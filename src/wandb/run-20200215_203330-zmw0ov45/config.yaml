@@ -1,0 +1,47 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.26
+    is_jupyter_run: false
+    python_version: 3.8.1
+batch_size:
+  desc: null
+  value: 46
+channels_1:
+  desc: null
+  value: 87
+channels_2:
+  desc: null
+  value: 63
+channels_3:
+  desc: null
+  value: 57
+dropout:
+  desc: null
+  value: 0.4025872635735867
+epochs:
+  desc: null
+  value: 135
+kernel_1:
+  desc: null
+  value: 17
+kernel_2:
+  desc: null
+  value: 13
+kernel_3:
+  desc: null
+  value: 2
+lin_features_1:
+  desc: null
+  value: 215
+lin_features_2:
+  desc: null
+  value: 71
+lin_features_3:
+  desc: null
+  value: 20
+mapping_dim:
+  desc: null
+  value: 2

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "main.py", line 77, in <module>
+    validation_loss, ct, tw = siamese.test(model, device, test_loader,
+  File "/home/evangelos/workspace/Channel_Charting/src/models/siamese.py", line 93, in test
+    ct += np.mean(metrics.continuity(x1, y1))
+  File "/home/evangelos/workspace/Channel_Charting/src/utils/metrics.py", line 61, in continuity
+    d_y = distance_matrix(y)
+  File "/home/evangelos/workspace/Channel_Charting/src/utils/metrics.py", line 17, in distance_matrix
+    c = x.size(2)
+IndexError: Dimension out of range (expected to be in range of [-2, 1], but got 2)

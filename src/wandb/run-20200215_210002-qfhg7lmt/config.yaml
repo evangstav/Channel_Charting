@@ -1,0 +1,57 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.26
+    framework: torch
+    is_jupyter_run: false
+    python_version: 3.8.1
+batch_size:
+  desc: null
+  value: 13
+channels_1:
+  desc: null
+  value: 158
+channels_2:
+  desc: null
+  value: 34
+channels_3:
+  desc: null
+  value: 23
+dropout:
+  desc: null
+  value: 0.6766157097649377
+epochs:
+  desc: null
+  value: 152
+input_channels:
+  desc: null
+  value: 32
+input_seq_len:
+  desc: null
+  value: 100
+kernel_1:
+  desc: null
+  value: 32
+kernel_2:
+  desc: null
+  value: 10
+kernel_3:
+  desc: null
+  value: 3
+lin_features_1:
+  desc: null
+  value: 182
+lin_features_2:
+  desc: null
+  value: 86
+lin_features_3:
+  desc: null
+  value: 38
+mapping_dim:
+  desc: null
+  value: 4
+used_pct:
+  desc: null
+  value: 0.1

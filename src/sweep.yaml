@@ -1,0 +1,62 @@
+program: main.py
+method: random
+metric:
+  name: Validation Loss
+  goal: minimize
+parameters:
+  epochs:
+    distribution: int_uniform
+    min: 50
+    max: 200
+  dropout:
+    distribution: uniform
+    min: 0.2
+    max: 0.8
+  kernel_1:
+    distribution: int_uniform
+    min: 8
+    max: 32
+  kernel_2:
+    distribution: int_uniform
+    min: 4
+    max: 16
+  kernel_3:
+    distribution: int_uniform
+    min: 2
+    max: 8
+  batch_size:
+    distribution: int_uniform
+    min: 4
+    max: 64
+  channels_1:
+    distribution: int_uniform
+    min: 64
+    max: 256
+  channels_2:
+    distribution: int_uniform
+    min: 32
+    max: 128
+  channels_3:
+    distribution: int_uniform
+    min: 16
+    max: 64
+  mapping_dim:
+    distribution: int_uniform
+    min: 1
+    max: 4
+  lin_features_1:
+    distribution: int_uniform
+    min: 64
+    max: 256
+  lin_features_2:
+    distribution: int_uniform
+    min: 32
+    max: 128
+  lin_features_3:
+    distribution: int_uniform
+    min: 16
+    max: 64
+early_terminate:
+  type: hyperband
+  eta: 3
+  min_iter: 3

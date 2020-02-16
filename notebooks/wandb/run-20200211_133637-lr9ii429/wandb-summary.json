@@ -1,0 +1,1 @@
+{"_runtime": 30.85151958465576, "Batch_size": 64, "_step": 1, "_timestamp": 1581428227.2018414, "graph_0": {"_type": "graph-file", "path": "media/graph/graph_0_summary_c412331a.graph.json", "sha256": "c412331a515c284bcd09f1ce2298fd9176a8a4f2404e08e8a7b9292277411084", "size": 1608}, "Validation Loss": NaN, "Training Loss": 453484.71875}

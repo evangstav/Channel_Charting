@@ -1,0 +1,2 @@
+{"Batch_size": 64, "_runtime": 16.67839813232422, "_timestamp": 1581428213.02872, "_step": 0}
+{"Training Loss": 453484.71875, "Validation Loss": NaN, "_runtime": 30.85151958465576, "_timestamp": 1581428227.2018414, "_step": 1}

@@ -1,0 +1,25 @@
+{
+    "root": "/home/evangelos/workspace/Channel_Charting",
+    "program": "/home/evangelos/.cache/pypoetry/virtualenvs/channel-charting-8NuP_Ebk-py3.8/bin/wandb",
+    "git": {
+        "remote": null,
+        "commit": "78914990a3e3e49a611de8f5dc11bcd8f50c159a"
+    },
+    "email": "evang.stavropoulos@gmail.com",
+    "startedAt": "2020-02-16T12:16:59.898479",
+    "host": "archlabs",
+    "username": "evangelos",
+    "executable": "/home/evangelos/.cache/pypoetry/virtualenvs/channel-charting-8NuP_Ebk-py3.8/bin/python",
+    "os": "Linux-5.5.3-zen1-1-zen-x86_64-with-glibc2.2.5",
+    "python": "3.8.1",
+    "cpu_count": 4,
+    "args": [
+        "agent",
+        "evs/ChannelCharting/l5x2o0ks"
+    ],
+    "state": "running",
+    "jobType": null,
+    "mode": "run",
+    "project": "ChannelCharting",
+    "heartbeatAt": "2020-02-16T12:39:26.665825"
+}

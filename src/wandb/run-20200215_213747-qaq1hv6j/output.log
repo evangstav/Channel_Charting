@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "main.py", line 77, in <module>
+    validation_loss, ct, tw = siamese.test(model, device, test_loader,
+  File "/home/evangelos/workspace/Channel_Charting/src/models/siamese.py", line 94, in test
+    ct += np.mean(metrics.continuity(x1, y1))
+  File "/home/evangelos/workspace/Channel_Charting/src/utils/metrics.py", line 68, in continuity
+    score = 1 - (2 / (N * K * (2 * N - 3 * K - 1))) * sum([
+ZeroDivisionError: division by zero

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "main.py", line 75, in <module>
+    train_loss = siamese.train(model, device, train_loader, optimizer,
+  File "/home/evangelos/workspace/Channel_Charting/src/models/siamese.py", line 72, in train
+    y1, y2 = model(x1), model(x2)
+  File "/home/evangelos/.cache/pypoetry/virtualenvs/channel-charting-8NuP_Ebk-py3.8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/evangelos/workspace/Channel_Charting/src/models/siamese.py", line 53, in forward
+    x = self.bn1(F.relu(self.conv1(x)))
+  File "/home/evangelos/.cache/pypoetry/virtualenvs/channel-charting-8NuP_Ebk-py3.8/lib/python3.8/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/evangelos/.cache/pypoetry/virtualenvs/channel-charting-8NuP_Ebk-py3.8/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 201, in forward
+    return F.conv1d(input, self.weight, self.bias, self.stride,
+RuntimeError: Given groups=1, weight of size 246 26 26, expected input[59, 32, 100] to have 26 channels, but got 32 channels instead

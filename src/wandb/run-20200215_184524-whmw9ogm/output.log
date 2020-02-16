@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "main.py", line 63, in <module>
+    train_dataset = data_preparation.SiameseDataset(train)
+NameError: name 'train' is not defined

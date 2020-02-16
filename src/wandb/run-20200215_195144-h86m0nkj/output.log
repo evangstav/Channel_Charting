@@ -1,0 +1,7 @@
+37.56491822492911
+Traceback (most recent call last):
+  File "main.py", line 77, in <module>
+    validation_loss, ct, tw = siamese.test(model, device, test_loader,
+  File "/home/evangelos/workspace/Channel_Charting/src/models/siamese.py", line 98, in test
+    ct / len(test_loader.dataset), tw / (test_loader.dataset))
+ValueError: only one element tensors can be converted to Python scalars

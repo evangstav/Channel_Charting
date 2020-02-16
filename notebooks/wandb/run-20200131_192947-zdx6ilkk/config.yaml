@@ -1,0 +1,26 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.22
+    is_jupyter_run: true
+    python_version: 3.8.1
+batch_size:
+  desc: null
+  value: 256
+epochs:
+  desc: null
+  value: 10
+log_interval:
+  desc: null
+  value: 10
+lr:
+  desc: null
+  value: 0.001
+momentum:
+  desc: null
+  value: 0.3
+val_batch_size:
+  desc: null
+  value: 100

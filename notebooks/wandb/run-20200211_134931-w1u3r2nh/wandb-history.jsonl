@@ -1,0 +1,5 @@
+{"_step":0,"_runtime":7.266435623168945,"Dropout":0.3,"Batch_size":64,"_timestamp":1.5814289972403622e+09}
+{"_step":1,"_runtime":10.182302236557007,"Dropout":0.3,"Batch_size":64,"_timestamp":1.5814290316469822e+09}
+{"_step":2,"Training Loss":"NaN","_runtime":22.401002407073975,"Validation Loss":"NaN","_timestamp":1.5814290438656824e+09}
+{"_step":3,"_runtime":22.41956377029419,"Dropout":0.3,"Batch_size":64,"_timestamp":1.581429107908545e+09}
+{"Batch_size": 64, "Dropout": 0.3, "_runtime": 22.422411918640137, "_timestamp": 1581429158.3525875, "_step": 4}
