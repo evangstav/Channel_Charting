@@ -14,6 +14,8 @@ from sklearn.model_selection import train_test_split
 from models import siamese
 from utils import data_preparation, metrics
 
+import matplotlib.pyplot as plt
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=100)
 parser.add_argument('--batch_size', type=int, default=32)
@@ -22,9 +24,12 @@ parser.add_argument('--input_seq_len', type=int, default=100)
 parser.add_argument('--channels_1', type=int, default=128)
 parser.add_argument('--channels_2', type=int, default=64)
 parser.add_argument('--channels_3', type=int, default=32)
-parser.add_argument('--kernel_1', type=int, default=16)
-parser.add_argument('--kernel_2', type=int, default=8)
-parser.add_argument('--kernel_3', type=int, default=4)
+parser.add_argument('--stride_1', type=int, default=1)
+parser.add_argument('--stride_2', type=int, default=1)
+parser.add_argument('--stride_3', type=int, default=1)
+parser.add_argument('--kernel_1', type=int, default=32)
+parser.add_argument('--kernel_2', type=int, default=16)
+parser.add_argument('--kernel_3', type=int, default=8)
 parser.add_argument('--lin_features_1', type=int, default=128)
 parser.add_argument('--lin_features_2', type=int, default=64)
 parser.add_argument('--lin_features_3', type=int, default=32)
@@ -41,10 +46,10 @@ epochs = args.epochs
 batch_size = args.batch_size
 used_pct = args.used_pct
 
-net_config = (args.channels_1, args.channels_2, args.channels_3, args.kernel_1,
-              args.kernel_2, args.kernel_3, args.lin_features_1,
-              args.lin_features_2, args.lin_features_3, args.mapping_dim,
-              args.dropout)
+net_config = (args.channels_1, args.channels_2, args.channels_3, args.stride_1,
+              args.stride_2, args.stride_3, args.kernel_1, args.kernel_2,
+              args.kernel_3, args.lin_features_1, args.lin_features_2,
+              args.lin_features_3, args.mapping_dim, args.dropout)
 
 cuda = torch.cuda.is_available()
 device = torch.device("cuda" if cuda else "cpu")
@@ -62,7 +67,7 @@ train_ds, test_ds = train_test_split(data_undersampled, test_size=0.1)
 
 train_dataset = data_preparation.SiameseDataset(train_ds)
 scaler = train_dataset.scaler_real, train_dataset.scaler_imag
-test_dataset = data_preparation.SiameseDataset(test_ds, scaler)
+test_dataset = data_preparation.SiameseDataset(test_ds, scaler_X=scaler)
 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
@@ -77,9 +82,15 @@ for e in range(1, epochs + 1):
     validation_loss, ct, tw = siamese.test(model, device, test_loader,
                                            criterion)
     scheduler.step()
+
+    plt.scatter(
+        model(test_dataset[:100][0]).detach()[:, 0],
+        model(test_dataset[:100][0]).detach()[:, 1])
+
     wandb.log({
         "Training Loss": train_loss,
         "Validation Loss": validation_loss,
         "Continuity": ct,
-        "Trustworthiness": tw
+        "Trustworthiness": tw,
+        "Projected Space": plt
     })

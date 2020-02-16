@@ -18,25 +18,32 @@ class SiameseNN(nn.Module):
         super(SiameseNN, self).__init__()
 
         (channels_1, channels_2, channels_3, kernel_1, kernel_2, kernel_3,
-         lin_features_1, lin_features_2, lin_features_3, mapping_dim,
-         dropout) = config
+         stride_1, stride_2, stride_3, lin_features_1, lin_features_2,
+         lin_features_3, mapping_dim, dropout) = config
         self.conv1 = nn.Conv1d(in_channels=input_channels,
                                out_channels=channels_1,
-                               kernel_size=kernel_1)
+                               kernel_size=kernel_1,
+                               stride=stride_1)
         self.bn1 = nn.BatchNorm1d(channels_1)
         self.conv2 = nn.Conv1d(in_channels=channels_1,
                                out_channels=channels_2,
-                               kernel_size=kernel_2)
+                               kernel_size=kernel_2,
+                               stride=stride_2)
         self.bn2 = nn.BatchNorm1d(channels_2)
         self.conv3 = nn.Conv1d(in_channels=channels_2,
                                out_channels=channels_3,
-                               kernel_size=kernel_3)
+                               kernel_size=kernel_3,
+                               stride=stride_3)
         self.bn3 = nn.BatchNorm1d(channels_3)
 
         f = conv1d_output_size
-        self.features = f(f(f(input_seq_len, kernel_size=kernel_1),
-                            kernel_size=kernel_2),
-                          kernel_size=kernel_3)
+        self.features = f(f(f(input_seq_len,
+                              kernel_size=kernel_1,
+                              stride=stride_1),
+                            kernel_size=kernel_2,
+                            stride=stride_2),
+                          kernel_size=kernel_3,
+                          stride=stride_3)
 
         self.lin1 = nn.Linear(in_features=channels_3 * self.features,
                               out_features=lin_features_1)
@@ -91,7 +98,8 @@ def test(model, device, test_loader, criterion):
         y1, y2 = model(x1), model(x2)
         test_loss += criterion(x1, x2, y1, y2)
         y1 = y1.unsqueeze(2).detach()
-        ct += np.mean(metrics.continuity(x1, y1))
-        tw += np.mean(metrics.trustworthiness(x1, y1))
+        ct += np.mean(metrics.continuity(x1, y1, range(1, 5)))
+        tw += np.mean(metrics.trustworthiness(x1, y1, range(1, 5)))
+
     return (test_loss / len(test_loader.dataset),
             ct / len(test_loader.dataset), tw / len(test_loader.dataset))

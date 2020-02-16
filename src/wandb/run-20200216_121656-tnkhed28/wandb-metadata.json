@@ -17,9 +17,10 @@
         "agent",
         "evs/ChannelCharting/l5x2o0ks"
     ],
-    "state": "running",
+    "state": "finished",
     "jobType": null,
     "mode": "run",
     "project": "ChannelCharting",
-    "heartbeatAt": "2020-02-16T12:39:26.665825"
+    "heartbeatAt": "2020-02-16T13:51:48.152926",
+    "exitcode": 0
 }
