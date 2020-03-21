@@ -1,0 +1,8 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}% 
+\contentsline {section}{\numberline {2}Theory}{2}{section.2}% 
+\contentsline {section}{\numberline {3}Data Exploration}{3}{section.3}% 
+\contentsline {section}{\numberline {4}Methods}{4}{section.4}% 
+\contentsline {section}{\numberline {5}Results}{5}{section.5}% 
+\contentsline {section}{References}{6}{section.5}% 
+\contentsline {section}{\numberline {6}Appendix A}{6}{section.6}% 

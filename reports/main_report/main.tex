@@ -1,0 +1,113 @@
+\documentclass[12pt,oneside,a4paper,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin2]{inputenc}
+\usepackage[margin=2.25cm,headheight=26pt,includeheadfoot]{geometry}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{titling}
+\usepackage[framed, numbered]{matlab-prettifier}
+\usepackage{changepage}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{titling}
+\usepackage{float}
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{indentfirst}
+\usepackage{lscape}
+\usepackage{booktabs,caption}
+\usepackage[flushleft]{threeparttable}
+\usepackage[english]{nomencl}
+\usepackage{xcolor}
+\usepackage{lipsum}
+
+
+% --- set footer and header ---
+\pagestyle{fancy}
+\fancyhf{}
+
+\setlength{\parindent}{2em}
+\title{Channel Charting Report} % to reference as \title, dont use \maketitle
+
+
+
+\lstset{language=Matlab,
+style=Matlab-editor,
+basicstyle=\normalsize\mlttfamily,
+numbers=left,
+numberstyle={\scriptsize\color{black}},			% size of the numbers
+numbersep=0.5cm											
+}
+
+\newlist{steps}{enumerate}{1}
+\setlist[steps, 1]{leftmargin=1.5cm,label = Step \arabic*:}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+%\lhead{\Title}
+\rhead{\nouppercase{\rightmark}}
+\lhead{\Title}
+\rfoot{\includegraphics[height=1.25cm]{root/logo.pdf}} % right header logo
+\setlength\headheight{16pt}
+\setlength{\footskip}{50pt}
+\lhead{\Title} %rightH title
+\cfoot{\thepage}
+
+% --- End of page settings ---
+
+
+
+\begin{document}
+\pagenumbering{roman} 
+\input{sources/frontpage.tex}
+
+\newpage
+\doublespacing
+%\addcontentsline{toc}{section}{Table of Contents}
+\renewcommand{\baselinestretch}{1}\normalsize
+\tableofcontents
+\renewcommand{\baselinestretch}{1}\normalsize
+%\singlespacing
+\thispagestyle{fancy} % force page style
+
+\newpage
+\pagenumbering{arabic} 
+\fancyfoot[C]{Page \thepage\ of \pageref{EndOfText}}
+
+\section{Introduction} \label{ch1}
+\input{sources/introduction.tex} 
+\pagebreak
+\section{Theory}
+\input{sources/Theory.tex}
+\pagebreak
+\section{Data Exploration}
+\input{sources/DataExploration.tex}
+\pagebreak
+\section{Methods}
+\input{sources/Methods.tex}
+\pagebreak
+\section{Results}
+\input{sources/Results.tex}
+
+\label{EndOfText}
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliography{document.bib} 
+\bibliographystyle{ieeetr}
+
+\newpage
+\section{Appendix A} \label{ch6}
+
+\label{endOfDoc}
+\end{document}
+

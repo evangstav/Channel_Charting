@@ -2,6 +2,7 @@ import wandb
 
 import argparse
 import numpy as np
+import scipy.fft as fft
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -35,7 +36,7 @@ parser.add_argument('--lin_features_2', type=int, default=64)
 parser.add_argument('--lin_features_3', type=int, default=32)
 parser.add_argument('--mapping_dim', type=int, default=2)
 parser.add_argument('--dropout', type=float, default=0.4)
-parser.add_argument('--used_pct', type=float, default=0.5)
+parser.add_argument('--used_pct', type=float, default=0.9)
 
 args = parser.parse_args()
 wandb.init(project='ChannelCharting', config=args)
@@ -58,12 +59,22 @@ model = siamese.SiameseNN(input_channels, input_seq_len, net_config).to(device)
 
 # read data
 data = np.load("../Data/RayTracingData/Remcom_4x4_IR_100taps.npy")
+# read positions
+positions = np.load("../Data/RayTracingData/Remcom_4x4_rxpos.npy")
 
-# undersampling
+# take a sample of the dataset
 idces = np.random.randint(0, data.shape[0], int(used_pct * data.shape[0]))
 data_undersampled = data[idces]
+print(data_undersampled.shape)
+#Fourier transform and smoothen by undersampling
+data_undersampled = fft.fft(data_undersampled)
+data_undersampled = data_undersampled[:, :, ::2]
+positions_undersampled = positions[idces]
+print(data_undersampled.shape, positions_undersampled.shape)
 
-train_ds, test_ds = train_test_split(data_undersampled, test_size=0.1)
+train_ds, test_ds, train_y, test_y = train_test_split(data_undersampled,
+                                                      positions_undersampled,
+                                                      test_size=0.2)
 
 train_dataset = data_preparation.SiameseDataset(train_ds)
 scaler = train_dataset.scaler_real, train_dataset.scaler_imag
@@ -84,8 +95,8 @@ for e in range(1, epochs + 1):
     scheduler.step()
 
     plt.scatter(
-        model(test_dataset[:100][0]).detach()[:, 0],
-        model(test_dataset[:100][0]).detach()[:, 1])
+        model(test_dataset[:500][0]).detach()[:, 0],
+        model(test_dataset[:500][0]).detach()[:, 1])
 
     wandb.log({
         "Training Loss": train_loss,

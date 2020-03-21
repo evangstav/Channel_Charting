@@ -4,6 +4,24 @@ import numpy as np
 import random
 
 
+class SupervisedDataset(Dataset):
+    def __init__(self, X, y):
+        self.X = torch.Tensor(X)
+        self.y = torch.Tensor(y)
+
+    def __len__(self):
+        return self.X.shape[0]
+
+    def channels(self):
+        return self.X.shape[1]
+
+    def timesteps(self):
+        return self.X.shape[2]
+
+    def __getitem__(self, idx):
+        return self.X[idx], self.y[idx]
+
+
 class SiameseDataset(Dataset):
     def __init__(self,
                  data,

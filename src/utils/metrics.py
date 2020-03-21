@@ -34,6 +34,7 @@ def rank_matrix(x):
         rank[:, i] = pos[1]
     return rank
 
+"""https://github.com/isido/dimred"""
 
 def trustworthiness(orig, proj, ks):
     """Calculate a trustworthiness values for dataset.

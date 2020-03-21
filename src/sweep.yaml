@@ -1,5 +1,5 @@
-program: main.py
-method: random
+program: train.py
+method: bayes
 metric:
   name: Validation Loss
   goal: minimize
@@ -7,7 +7,7 @@ parameters:
   epochs:
     distribution: int_uniform
     min: 50
-    max: 200
+    max: 100
   dropout:
     distribution: uniform
     min: 0.2
@@ -24,10 +24,14 @@ parameters:
     distribution: int_uniform
     min: 2
     max: 8
+  used_pct:
+    distribution: uniform
+    min: 0.5
+    max: 0.8
   batch_size:
     distribution: int_uniform
-    min: 4
-    max: 64
+    min: 16
+    max: 128
   channels_1:
     distribution: int_uniform
     min: 64
@@ -40,10 +44,6 @@ parameters:
     distribution: int_uniform
     min: 16
     max: 64
-  mapping_dim:
-    distribution: int_uniform
-    min: 1
-    max: 4
   lin_features_1:
     distribution: int_uniform
     min: 64
