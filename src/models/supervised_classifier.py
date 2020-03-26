@@ -43,6 +43,7 @@ class Classifier(nn.Module):
 def train(model, train_loader, optimizer, criterion, device):
     model.train()
     loss = 0
+    accuracy = 0
     for x, y in train_loader:
         optimizer.zero_grad()
         x, y = x.to(device), y.to(device)
@@ -54,9 +55,12 @@ def train(model, train_loader, optimizer, criterion, device):
         optimizer.step()
 
         loss += batch_loss.item()
-    loss /= len(train_loader.dataset)
+        accuracy += accuracy_score(y.detach(), y_hat.argmax(dim=1).detach())
 
-    return loss
+    loss /= len(train_loader.dataset)
+    accuracy /= len(train_loader.dataset)
+
+    return loss * train_loader.batch_size, accuracy * train_loader.batch_size
 
 
 def test(model, test_loader, criterion, device):
@@ -68,5 +72,6 @@ def test(model, test_loader, criterion, device):
         y_hat = model(x)
         val_loss += criterion(y_hat, y.long()).item()
         accuracy += accuracy_score(y.detach(), y_hat.argmax(dim=1).detach())
-    return val_loss / len(test_loader.dataset), accuracy / len(
-        test_loader.dataset)
+    return val_loss * test_loader.batch_size / len(
+        test_loader.dataset), accuracy * test_loader.batch_size / len(
+            test_loader.dataset)
