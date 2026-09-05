@@ -1,0 +1,3 @@
+# W&B generates environment snapshots; archive reviewed records as Markdown.
+/notebooks/wandb/run-*/requirements.txt
+/src/wandb/run-*/requirements.txt
